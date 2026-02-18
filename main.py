@@ -50,7 +50,7 @@ def get_student(student_id:int):
 
 
 #Update a student detail PUT
-@app.put("students/{student_id}")
+@app.put("/students/{student_id}")
 def update_student(student_id : int , student_det : Student):
      if student_id < 0 or student_id >= len(students):
         raise HTTPException(
@@ -105,7 +105,7 @@ def analyze_feedback(feed:Feedback):
         "Result":result
     }
 
-@app.get("/search")
+@app.get("/smart-search")
 def search_students(query:str):
     results = smart_search(students,query)
 
