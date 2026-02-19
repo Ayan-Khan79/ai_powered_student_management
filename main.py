@@ -1,10 +1,14 @@
+import uvicorn
+import os
 from fastapi import FastAPI, HTTPException
 from typing import List,Optional
 from models import Student,Professor,Feedback
 from database import students, professors
 from nlp_utils import analyze_sentiment,smart_search
 
-
+PORT = int(os.environ.get("PORT", 8000))
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=PORT)
 
 app = FastAPI(
     title="Student Management Api",
@@ -118,9 +122,3 @@ def search_students(query:str):
         "Count" : len(results),
         'Students': results
     }
-
-    
-
-    
-
-
